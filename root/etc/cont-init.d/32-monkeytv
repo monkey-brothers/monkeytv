@@ -2,7 +2,7 @@
 
 # Comprobamos si existe instalador de y lanzamos comprobador de version
 if [ ! -e /app/scripts/checknormandyver.sh ]; then
-	(mkdir -p /app/scripts/ && wget -P /app/scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/master/scripts/checknormandyver.sh && cd /app/scripts && sh checknormandyver.sh)
+  (mkdir -p /app/scripts/ && wget -P /app/scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/master/scripts/checknormandyver.sh && cd /app/scripts && sh checknormandyver.sh)
 else
   (cd /app/scripts && sh checknormandyver.sh)
 fi
