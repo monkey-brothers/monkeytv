@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-#  Copiamos los archivos de configuracion
+#  Copiamos los archivos iniciales de configuracion para oscam
 [[ ! -e /config/oscam/oscam.conf ]] && \
         (mkdir -p /config/oscam && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)
 [[ ! -e /config/oscam/oscam.server ]] && \
@@ -9,10 +9,15 @@
         (mkdir -p /config/oscam && cp /defaults/oscam/oscam.user /config/oscam/oscam.user)
 [[ ! -e /config/caclient/0c84089713e3668e1cbba92f486b68c0 ]] && \
         (mkdir -p /config/caclient && cp /defaults/caclient/0c84089713e3668e1cbba92f486b68c0 /config/caclient/0c84089713e3668e1cbba92f486b68c0)
-[[ ! -e /config/xteve/settings.json ]] && \
-        (mkdir -p /config/xteve && cp /defaults/xteve/settings.json /config/xteve/settings.json && \
-         localip=$(ip route get 1.2.3.4 | awk '{print $7}') && sed -i "s/localhost/$localip/g" /config/xteve/settings.json)
-         
+
+# Comprobamos si existe configuracion de Xteve y lo iniciamos
+if [ ! -e config/xteve/settings.json ]; then
+  (mkdir -p /config/xteve && cp /defaults/xteve/settings.json /config/xteve/settings.json && \
+   localip=$(ip route get 1.2.3.4 | awk '{print $7}') && sed -i "s/localhost/$localip/g" /config/xteve/settings.json && xteve -port="8080" -config=/config/xteve/)
+else
+  (xteve -port="8080" -config=/config/xteve/)
+fi
+
 # Comprobamos si existe instalador de y lanzamos comprobador de version
 if [ ! -e /scripts/checknormandyver.sh ]; then
   (mkdir -p /scripts/ && wget -P /scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/master/scripts/checknormandyver.sh && cd /scripts && sh checknormandyver.sh)
