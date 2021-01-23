@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if
-[ "`cat /app/NormandyEPG/Normandy_EPG.ver 2>/dev/null`" != "`curl -L https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.ver 2>/dev/null`" ];
+[ "`cat /config/NormandyEPG/Normandy_EPG.ver 2>/dev/null`" != "`curl -L https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.ver 2>/dev/null`" ];
 then
 echo "Comenzamos la instalacion"
 NOMBRE_APP="NormandyEPG"
@@ -11,8 +11,8 @@ carpeta_tag="$CARPETA_TVH/channel/tag/*"
 
 
 # Borramos configuración actual de TVH
-	rm -rf /app/NormandyEPG/picons
-	rm -rf /app/NormandyEPG/Normandy_EPG.ver
+	rm -rf /picons
+	rm -rf /config/NormandyEPG/Normandy_EPG.ver
 	cd $CARPETA_TVH
 	rm -f config
 	rm -rf bouquet/
@@ -46,20 +46,20 @@ carpeta_tag="$CARPETA_TVH/channel/tag/*"
 
 #Descargarmos NormandyEPG
 wget -P /tmp/ https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.zip
-mkdir -p /app/NormandyEPG /app/NormandyEPG/tmp
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'picons/*' -d /app/NormandyEPG/tmp  > /dev/null 2>&1
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'bindocker/*' -d /app/NormandyEPG/tmp  > /dev/null 2>&1
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'data/*' -d /app/NormandyEPG/tmp  > /dev/null 2>&1
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'datadocker/*' -d /app/NormandyEPG/tmp  > /dev/null 2>&1
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'Normandy_EPG.ver' -d /app/NormandyEPG/tmp  > /dev/null 2>&1
-chmod +x /app/NormandyEPG/tmp/bindocker/*
-chmod +x /app/NormandyEPG/tmp/datadocker/*
-cp -r /app/NormandyEPG/tmp/picons/. /picons/
-cp -r /app/NormandyEPG/tmp/bindocker/. /usr/bin/
-cp -r /app/NormandyEPG/tmp/data/. /config/
-cp -r /app/NormandyEPG/tmp/datadocker/. /config/
-cp -r /app/NormandyEPG/tmp/Normandy_EPG.ver /app/NormandyEPG
-rm -rf /app/NormandyEPG/tmp
+mkdir -p /config/NormandyEPG /tmp/NormandyEPG
+unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'picons/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
+unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'bindocker/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
+unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'data/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
+unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'datadocker/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
+unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'Normandy_EPG.ver' -d /tmp/NormandyEPG  > /dev/null 2>&1
+chmod +x /tmp/NormandyEPG/bindocker/*
+chmod +x /tmp/NormandyEPG/datadocker/*
+cp -r /tmp/NormandyEPG/picons/. /picons/
+cp -r /tmp/NormandyEPG/bindocker/. /usr/bin/
+cp -r /tmp/NormandyEPG/data/. /config/
+cp -r /tmp/NormandyEPG/datadocker/. /config/
+cp -r /tmp/NormandyEPG/Normandy_EPG.ver /config/NormandyEPG
+rm -rf /tmp/NormandyEPG/
 rm -rf /tmp/Normandy_EPG.zip
 reboot
 else
