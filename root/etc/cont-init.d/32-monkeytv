@@ -1,5 +1,17 @@
 #!/usr/bin/with-contenv bash
 
+#  Copiamos los archivos de configuracion
+[[ ! -e /config/oscam/oscam.conf ]] && \
+        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)
+[[ ! -e /config/oscam/oscam.conf ]] && \
+        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)        
+[[ ! -e /config/oscam/oscam.conf ]] && \
+        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)
+[[ ! -e /config/caclient/0c84089713e3668e1cbba92f486b68c0 ]] && \
+        (mkdir -p /config/caclient && cp /defaults/caclient/0c84089713e3668e1cbba92f486b68c0 /config/caclient/0c84089713e3668e1cbba92f486b68c0)
+[[ ! -e /config/xteve/settings.json ]] && \
+        (mkdir -p /config/xteve && cp /defaults/xteve/settings.json /config/xteve/settings.json)
+
 # Comprobamos si existe instalador de y lanzamos comprobador de version
 if [ ! -e /app/scripts/checknormandyver.sh ]; then
   (mkdir -p /app/scripts/ && wget -P /app/scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/master/scripts/checknormandyver.sh && cd /app/scripts && sh checknormandyver.sh)
