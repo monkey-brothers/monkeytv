@@ -3,10 +3,10 @@
 #  Copiamos los archivos de configuracion
 [[ ! -e /config/oscam/oscam.conf ]] && \
         (mkdir -p /config/oscam && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)
-[[ ! -e /config/oscam/oscam.conf ]] && \
-        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)        
-[[ ! -e /config/oscam/oscam.conf ]] && \
-        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)
+[[ ! -e /config/oscam/oscam.server ]] && \
+        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.server /config/oscam/oscam.coservernf)        
+[[ ! -e /config/oscam/oscam.user ]] && \
+        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.user /config/oscam/oscam.user)
 [[ ! -e /config/caclient/0c84089713e3668e1cbba92f486b68c0 ]] && \
         (mkdir -p /config/caclient && cp /defaults/caclient/0c84089713e3668e1cbba92f486b68c0 /config/caclient/0c84089713e3668e1cbba92f486b68c0)
 [[ ! -e /config/xteve/settings.json ]] && \
