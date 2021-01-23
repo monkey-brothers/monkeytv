@@ -6,3 +6,5 @@ if [ ! -e config/xteve/settings.json ]; then
 else
   (xteve -port="8080" -config=/config/xteve/)
 fi
+exit
+
