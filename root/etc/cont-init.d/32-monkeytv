@@ -10,11 +10,12 @@
 [[ ! -e /config/caclient/0c84089713e3668e1cbba92f486b68c0 ]] && \
         (mkdir -p /config/caclient && cp /defaults/caclient/0c84089713e3668e1cbba92f486b68c0 /config/caclient/0c84089713e3668e1cbba92f486b68c0)
 [[ ! -e /config/xteve/settings.json ]] && \
-        (mkdir -p /config/xteve && cp /defaults/xteve/settings.json /config/xteve/settings.json)
-
+        (mkdir -p /config/xteve && cp /defaults/xteve/settings.json /config/xteve/settings.json && \
+         localip=$(ip route get 1.2.3.4 | awk '{print $7}') && sed -i "s/localhost/$localip/g" /config/xteve/settings.json)
+         
 # Comprobamos si existe instalador de y lanzamos comprobador de version
-if [ ! -e /app/scripts/checknormandyver.sh ]; then
-  (mkdir -p /app/scripts/ && wget -P /app/scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/master/scripts/checknormandyver.sh && cd /app/scripts && sh checknormandyver.sh)
+if [ ! -e /scripts/checknormandyver.sh ]; then
+  (mkdir -p /scripts/ && wget -P /scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/master/scripts/checknormandyver.sh && cd /scripts && sh checknormandyver.sh)
 else
-  (cd /app/scripts && sh checknormandyver.sh)
+  (cd /scripts && sh checknormandyver.sh)
 fi
