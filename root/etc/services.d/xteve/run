@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+s6-sleep 10
+exec \
+        s6-setuidgid abc xteve -port="8080" -config=/config/xteve/
