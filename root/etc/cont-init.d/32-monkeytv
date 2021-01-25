@@ -9,14 +9,28 @@
         (mkdir -p /config/oscam && cp /defaults/oscam/oscam.user /config/oscam/oscam.user)
 [[ ! -e /config/caclient/0c84089713e3668e1cbba92f486b68c0 ]] && \
         (mkdir -p /config/caclient && cp /defaults/caclient/0c84089713e3668e1cbba92f486b68c0 /config/caclient/0c84089713e3668e1cbba92f486b68c0)
-# Comprobamos si existe configuracion de Xteve y lo iniciamos
-if [ ! -e config/xteve/settings.json ]; then
-  (mkdir -p /config/xteve && cp /defaults/xteve/settings.json /config/xteve/settings.json && \
-   localip=$(ip route get 1.2.3.4 | awk '{print $7}') && sed -i "s/localhost/$localip/g" /config/xteve/settings.json)
-fi
 # Comprobamos si existe instalador de y lanzamos comprobador de version
 if [ ! -e /scripts/checknormandyver.sh ]; then
   (mkdir -p /scripts/ && wget -P /scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/master/scripts/checknormandyver.sh && cd /scripts && sh checknormandyver.sh)
 else
   (cd /scripts && sh checknormandyver.sh)
+fi
+# Comprobamos si existe configuracion de Xteve y ponemos la ip de TVheadend en la lista M3U ,XMLTV y
+if [ ! -e config/xteve/settings.json ]; then
+  (mkdir -p /config/xteve && cp /defaults/xteve/settings.json /config/xteve/settings.json && \
+   localip=$(ip route get 1.2.3.4 | awk '{print $7}') && sed -i "s/localhost/$localip/g" /config/xteve/settings.json)
+else
+  (localip=$(ip route get 1.2.3.4 | awk '{print $7}') && \
+   sed -i 's+"file.source": "http://.*:9981/playlist+"file.source": "http://newip:9981/playlist+g' /config/xteve/settings.json && \
+   sed -i 's+"file.source": "http://.*:9981/xmltv+"file.source": "http://newip:9981/xmltv+g' /config/xteve/settings.json && \
+   sed -i "s/newip/$localip/g" /config/xteve/settings.json && \
+   sed -i 's+"tvg-logo": "http://.*:9981/imagecache/+"tvg-logo": "http://newip:9981/imagecache/+g' /config/xteve/xepg.json && \
+   sed -i "s/newip/$localip/g" /config/xteve/xepg.json)
+fi
+
+# Activamos los tunners SATIP
+if [ ! -e /app/scripts/activate_satip_tunners.sh ]; then
+	(mkdir -p /app/scripts/ && wget -P /app/scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/scripts/master/activate_satip_tunners.sh && cd /app/scripts && sh activate_satip_tunners.sh)
+else
+    (cd /app/scripts && sh activate_satip_tunners.sh)
 fi
