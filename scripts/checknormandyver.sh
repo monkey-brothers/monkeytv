@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ ! -e /config/NormandyEPG/Normandy_EPG.ver]; then
+  instalado = 0
+else
+  instalado = 1
+fi
+
 if
 [ "`cat /config/NormandyEPG/Normandy_EPG.ver 2>/dev/null`" != "`curl -L https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.ver 2>/dev/null`" ];
 then
@@ -61,7 +67,14 @@ cp -r /tmp/NormandyEPG/datadocker/. /config/
 cp -r /tmp/NormandyEPG/Normandy_EPG.ver /config/NormandyEPG
 rm -rf /tmp/NormandyEPG/
 rm -rf /tmp/Normandy_EPG.zip
-s6-svc -r /var/run/s6/services/tvheadend/
+if $instalado = 1
+  s6-svc -r /var/run/s6/services/tvheadend/
+  echo "Reiniciado servicio TVheadend"
+fi
+if $instalado = 0
+  reboot
+  echo "Reiniciado MonkeyTV"
+fi
 else
 echo "NormandyEPG actualizada"
 fi
