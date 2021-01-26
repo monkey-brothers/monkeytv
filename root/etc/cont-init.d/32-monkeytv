@@ -4,7 +4,7 @@
 [[ ! -e /config/oscam/oscam.conf ]] && \
         (mkdir -p /config/oscam && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)
 [[ ! -e /config/oscam/oscam.server ]] && \
-        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.server /config/oscam/oscam.server && cp /defaults/oscam/oscam.conf /config/oscam/oscam.conf)        
+        (mkdir -p /config/oscam && cp /defaults/oscam/oscam.server /config/oscam/oscam.server)        
 [[ ! -e /config/oscam/oscam.user ]] && \
         (mkdir -p /config/oscam && cp /defaults/oscam/oscam.user /config/oscam/oscam.user)
 [[ ! -e /config/caclient/0c84089713e3668e1cbba92f486b68c0 ]] && \
@@ -20,13 +20,7 @@ if [ ! -e config/xteve/settings.json ]; then
   (mkdir -p /config/xteve && cp /defaults/xteve/settings.json /config/xteve/settings.json && \
    localip=$(ip route get 1.2.3.4 | awk '{print $7}') && sed -i "s/localhost/$localip/g" /config/xteve/settings.json)
 else
-  (localip=$(ip route get 1.2.3.4 | awk '{print $7}') && \
-   sed -i 's+"file.source": "http://.*:9981/playlist+"file.source": "http://newip:9981/playlist+g' /config/xteve/settings.json && \
-   sed -i 's+"file.source": "http://.*:9981/xmltv+"file.source": "http://newip:9981/xmltv+g' /config/xteve/settings.json && \
-   sed -i "s/newip/$localip/g" /config/xteve/settings.json && \
-   sed -i 's+"tvg-logo": "http://.*:9981/imagecache/+"tvg-logo": "http://newip:9981/imagecache/+g' /config/xteve/xepg.json && \
-   sed -i 's+"url": "http://.*:9981/stream+"url": "http://newip:9981/stream+g' /config/xteve/xepg.json && \
-   sed -i "s/newip/$localip/g" /config/xteve/xepg.json)
+  (cd /scripts && sh update_xteve.sh)
 fi
 
 # Activamos los tunners SATIP
