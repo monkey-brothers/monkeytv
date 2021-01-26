@@ -24,8 +24,8 @@ else
 fi
 
 # Activamos los tunners SATIP
-if [ ! -e /app/scripts/activate_satip_tunners.sh ]; then
-	(mkdir -p /app/scripts/ && wget -P /app/scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/scripts/master/activate_satip_tunners.sh && cd /app/scripts && sh activate_satip_tunners.sh)
+if [ ! -e /scripts/activate_satip_tunners.sh ]; then
+	(mkdir -p /scripts/ && wget -P /scripts/ https://raw.githubusercontent.com/monkey-brothers/monkeytv/master/scripts/activate_satip_tunners.sh && cd /scripts && sh activate_satip_tunners.sh)
 else
-    (cd /app/scripts && sh activate_satip_tunners.sh)
+    (cd /scripts && sh activate_satip_tunners.sh)
 fi
