@@ -61,4 +61,5 @@
  apk del --purge \
 	build-dependencies && \
  rm -rf \
-	/tmp/*
+	/tmp/*  && \
+reboot
