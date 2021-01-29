@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ ! -e /config/NormandyEPG/Normandy_EPG.ver]; then
-  instalado = "false"
+  instalado="false"
 else
-  instalado = "true"
+  instalado="true"
 fi
 
 if
@@ -51,6 +51,7 @@ carpeta_tag="$CARPETA_TVH/channel/tag/*"
 	fi
 
 #Descargarmos NormandyEPG
+apk add --no-cache unzip
 wget -P /tmp/ https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.zip
 mkdir -p /config/NormandyEPG /tmp/NormandyEPG
 unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'picons/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
@@ -67,11 +68,11 @@ cp -r /tmp/NormandyEPG/datadocker/. /config/
 cp -r /tmp/NormandyEPG/Normandy_EPG.ver /config/NormandyEPG
 rm -rf /tmp/NormandyEPG/
 rm -rf /tmp/Normandy_EPG.zip
-if $instalado = "true"
+if $instalado="true" then
   s6-svc -r /var/run/s6/services/tvheadend/
   echo "Reiniciado servicio TVheadend"
 fi
-if $instalado = "false"
+if $instalado="false"; then
   reboot
   echo "Reiniciado MonkeyTV"
 fi
