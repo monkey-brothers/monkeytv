@@ -61,6 +61,7 @@ cp -r /tmp/NormandyEPG/datadocker/. /config/
 cp -r /tmp/NormandyEPG/Normandy_EPG.ver /config/NormandyEPG
 rm -rf /tmp/NormandyEPG/
 rm -rf /tmp/Normandy_EPG.zip
+reboot
 else
 echo "NormandyEPG actualizada"
 fi
