@@ -1,6 +1,6 @@
 #!/bin/bash
 if
-[ "`cat /config/NormandyEPG/Normandy_EPG.ver 2>/dev/null`" != "`curl -L https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.ver 2>/dev/null`" ];
+[ "`cat /NormandyEPG/Normandy_EPG.ver 2>/dev/null`" != "`curl -L https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.ver 2>/dev/null`" ];
 then
 echo "Comenzamos la instalacion"
 NOMBRE_APP="NormandyEPG"
@@ -46,7 +46,7 @@ carpeta_tag="$CARPETA_TVH/channel/tag/*"
 #Descargarmos NormandyEPG
 apk add --no-cache unzip
 wget -P /tmp/ https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.zip
-mkdir -p /config/NormandyEPG /tmp/NormandyEPG
+mkdir -p /NormandyEPG /tmp/NormandyEPG
 unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'picons/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
 unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'bindocker/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
 unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'data/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
@@ -58,7 +58,7 @@ cp -r /tmp/NormandyEPG/picons/. /picons/
 cp -r /tmp/NormandyEPG/bindocker/. /usr/bin/
 cp -r /tmp/NormandyEPG/data/. /config/
 cp -r /tmp/NormandyEPG/datadocker/. /config/
-cp -r /tmp/NormandyEPG/Normandy_EPG.ver /config/NormandyEPG
+cp -r /tmp/NormandyEPG/Normandy_EPG.ver /NormandyEPG
 rm -rf /tmp/NormandyEPG/
 rm -rf /tmp/Normandy_EPG.zip
 reboot
