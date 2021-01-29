@@ -54,6 +54,9 @@
  groupmod -g 24 cron && \
  groupmod -g 16 dialout && \
  usermod -a -G 16 abc && \
+ svn checkout https://github.com/linuxserver/docker-oscam/trunk/root /tmp/docker-oscam/root && \
+ mv /tmp/docker-oscam/root/etc/cont-init.d/30-config /tmp/docker-oscam/root/etc/cont-init.d/33-config && \
+ cp /tmp/docker-oscam/root && / \
  echo "**** cleanup ****" && \
  apk del --purge \
 	build-dependencies && \
