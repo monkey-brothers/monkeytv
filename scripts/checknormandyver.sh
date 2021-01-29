@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ ! -e /config/NormandyEPG/Normandy_EPG.ver]; then
-  instalado = 0
+  instalado = "false"
 else
-  instalado = 1
+  instalado = "true"
 fi
 
 if
@@ -67,11 +67,11 @@ cp -r /tmp/NormandyEPG/datadocker/. /config/
 cp -r /tmp/NormandyEPG/Normandy_EPG.ver /config/NormandyEPG
 rm -rf /tmp/NormandyEPG/
 rm -rf /tmp/Normandy_EPG.zip
-if $instalado = 1
+if $instalado = "true"
   s6-svc -r /var/run/s6/services/tvheadend/
   echo "Reiniciado servicio TVheadend"
 fi
-if $instalado = 0
+if $instalado = "false"
   reboot
   echo "Reiniciado MonkeyTV"
 fi
