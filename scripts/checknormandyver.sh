@@ -1,6 +1,6 @@
 #!/bin/bash
 if
-[ "`cat /NormandyEPG/Normandy_EPG.ver 2>/dev/null`" != "`curl -L https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.ver 2>/dev/null`" ];
+[ "`cat /config/NormandyEPG/Normandy_EPG.ver 2>/dev/null`" != "`curl -L https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.ver 2>/dev/null`" ];
 then
 echo "Comenzamos la instalacion"
 NOMBRE_APP="NormandyEPG"
@@ -45,22 +45,22 @@ carpeta_tag="$CARPETA_TVH/channel/tag/*"
 
 #Descargarmos NormandyEPG
 apk add --no-cache unzip
-wget -P /tmp/ https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.zip
-mkdir -p /NormandyEPG /tmp/NormandyEPG
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'picons/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'bindocker/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'data/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'datadocker/*' -d /tmp/NormandyEPG  > /dev/null 2>&1
-unzip -o -P "p~a6T<%}bwX<GwHQ" /tmp/Normandy_EPG.zip 'Normandy_EPG.ver' -d /tmp/NormandyEPG  > /dev/null 2>&1
-chmod +x /tmp/NormandyEPG/bindocker/*
-chmod +x /tmp/NormandyEPG/datadocker/*
-cp -r /tmp/NormandyEPG/picons/. /picons/
-cp -r /tmp/NormandyEPG/bindocker/. /usr/bin/
-cp -r /tmp/NormandyEPG/data/. /config/
-cp -r /tmp/NormandyEPG/datadocker/. /config/
-cp -r /tmp/NormandyEPG/Normandy_EPG.ver /NormandyEPG
-rm -rf /tmp/NormandyEPG/
-rm -rf /tmp/Normandy_EPG.zip
+wget -P /config/tmp/ https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.zip
+mkdir -p /NormandyEPG /config/tmp/NormandyEPG
+unzip -o -P "p~a6T<%}bwX<GwHQ" /config/tmp/Normandy_EPG.zip 'picons/*' -d /config/tmp/NormandyEPG  > /dev/null 2>&1
+unzip -o -P "p~a6T<%}bwX<GwHQ" /config/tmp/Normandy_EPG.zip 'bindocker/*' -d /config/tmp/NormandyEPG  > /dev/null 2>&1
+unzip -o -P "p~a6T<%}bwX<GwHQ" /config/tmp/Normandy_EPG.zip 'data/*' -d /config/tmp/NormandyEPG  > /dev/null 2>&1
+unzip -o -P "p~a6T<%}bwX<GwHQ" /config/tmp/Normandy_EPG.zip 'datadocker/*' -d /config/tmp/NormandyEPG  > /dev/null 2>&1
+unzip -o -P "p~a6T<%}bwX<GwHQ" /config/tmp/Normandy_EPG.zip 'Normandy_EPG.ver' -d /config/tmp/NormandyEPG  > /dev/null 2>&1
+chmod +x /config/tmp/NormandyEPG/bindocker/*
+chmod +x /config/tmp/NormandyEPG/datadocker/*
+cp -r /config/tmp/NormandyEPG/picons/. /picons/
+cp -r /config/tmp/NormandyEPG/bindocker/. /usr/bin/
+cp -r /config/tmp/NormandyEPG/data/. /config/
+cp -r /config/tmp/NormandyEPG/datadocker/. /config/
+cp -r /config/tmp/NormandyEPG/Normandy_EPG.ver /NormandyEPG
+rm -rf /config/tmp/NormandyEPG/
+rm -rf /config/tmp/Normandy_EPG.zip
 reboot
 else
 echo "NormandyEPG actualizada"
