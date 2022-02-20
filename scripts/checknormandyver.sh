@@ -46,7 +46,7 @@ carpeta_tag="$CARPETA_TVH/channel/tag/*"
 #Descargarmos NormandyEPG
 apk add --no-cache unzip
 wget -P /config/tmp/ https://raw.githubusercontent.com/NormandyEPG/NEPG/master/Normandy_EPG.zip
-mkdir -p /NormandyEPG /config/tmp/NormandyEPG
+mkdir -p /config/NormandyEPG /config/tmp/NormandyEPG
 unzip -o -P "p~a6T<%}bwX<GwHQ" /config/tmp/Normandy_EPG.zip 'picons/*' -d /config/tmp/NormandyEPG  > /dev/null 2>&1
 unzip -o -P "p~a6T<%}bwX<GwHQ" /config/tmp/Normandy_EPG.zip 'bindocker/*' -d /config/tmp/NormandyEPG  > /dev/null 2>&1
 unzip -o -P "p~a6T<%}bwX<GwHQ" /config/tmp/Normandy_EPG.zip 'data/*' -d /config/tmp/NormandyEPG  > /dev/null 2>&1
@@ -58,7 +58,7 @@ cp -r /config/tmp/NormandyEPG/picons/. /picons/
 cp -r /config/tmp/NormandyEPG/bindocker/. /usr/bin/
 cp -r /config/tmp/NormandyEPG/data/. /config/
 cp -r /config/tmp/NormandyEPG/datadocker/. /config/
-cp -r /config/tmp/NormandyEPG/Normandy_EPG.ver /NormandyEPG
+cp -r /config/tmp/NormandyEPG/Normandy_EPG.ver /config/NormandyEPG
 rm -rf /config/tmp/NormandyEPG/
 rm -rf /config/tmp/Normandy_EPG.zip
 reboot
